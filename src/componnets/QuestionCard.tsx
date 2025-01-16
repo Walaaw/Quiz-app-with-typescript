@@ -3,9 +3,9 @@ type Props = {
   question: string;
   answers: string[];
   questionNumber: number;
-  userAnswer:boolean;
-  totalQuestions:number;
-  callBack:any
+  userAnswer: any;
+  totalQuestions: number;
+  callBack: any;
 };
 
 const QuestionCard: React.FC<Props> = ({
@@ -16,17 +16,20 @@ const QuestionCard: React.FC<Props> = ({
   totalQuestions,
   callBack,
 }) => {
-  return <div>
-
-    <p>{`question ${questionNumber}/${totalQuestions}`}</p>
-    <p>{question}</p>
-    {
-       answers.map((answer)=>{
-        return <button disabled={userAnswer}>{answer}</button>
-       })
-    }
-    <button>Next Question </button>
-  </div>;
+  return (
+    <div>
+      <p>{`question ${questionNumber}/${totalQuestions}`}</p>
+      <p>{question}</p>
+      {answers?.map((answer, index) => {
+        return (
+          <button key={index} disabled={userAnswer} value={answer} onClick={callBack}>
+            {answer}
+          </button>
+        );
+      })}
+     
+    </div>
+  );
 };
 
 export default QuestionCard;
